@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-require("./config");
+const config = require("./config");
 console.log(config);
 
 client.on("ready", () => {
