@@ -7,12 +7,13 @@ client.on("ready", () => {
 });
 
 client.on("message", msg => {
-	if (msg.content === `${prefix}ping`) {
-		msg.reply("Pong!");
-	} else if (msg.content === `${prefix}bestNina`) {
-		msg.reply(` you know who the best Nina is.`);
-	} else if (msg.content === `${prefix}coinToss`) {
-		msg.channel.send(Math.random() * 1 ? "Heads" : "Tails");
+	switch(msg.content) {
+		case `${prefix}ping`:
+			msg.reply("Pong!");
+		case `${prefix}bestNina`:
+			msg.reply(` you know who the best Nina is.`);
+		case `${prefix}coinToss`:
+			msg.channel.send(Math.random() * 1 ? "Heads" : "Tails");
 	}
 });
 
