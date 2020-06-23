@@ -11,20 +11,50 @@ function listCommands(msg) {
 	msg.channel.send(output);
 }
 
+function eightBall(msg) {
+	let responses = ['It is certain.',
+		'It is decidedly so.',
+		'Without a doubt.',
+		'Yes - definitely.',
+		'You may rely on it.',
+		'As I see it, yes.',
+		'Most likely.',
+		'Outlook good.',
+		'Yes.',
+		'Signs point to yes.',
+		'Reply hazy, try again.',
+		'Ask again later.',
+		'Better not tell you now.',
+		'Cannot predict now.',
+		'Concentrate and ask again.',
+		'Don\'t count on it.',
+		'My reply is no.',
+		'My sources say no.',
+		'Outlook not so good.',
+		'Very doubtful.'];
+	
+	let answer = Math.floor(Math.random() * responses.length);
+	msg.channel.send(`Question: ${msg.content.slice(7)}\n8 ball says: ${responses[answer]}`);
+}
+
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on("message", msg => {
-	switch(msg.content) {
+	let command = (msg.content.match(/^![\w\d]*\b/) || [])[0];
+	switch(command) {
 		case `${prefix}bestNina`:
 			msg.reply(` you know who the best Nina is.`);
 			break;
 		case `${prefix}coinToss`:
-			msg.channel.send(Math.random() * 1 ? "Heads" : "Tails");
+			msg.channel.send(Math.floor(Math.random() * 2) === 0 ? "Heads" : "Tails");
 			break;
 		case `${prefix}commands`:
 			listCommands(msg);
+			break;
+		case `${prefix}8ball`:
+			eightBall(msg);
 			break;
 	}
 });
