@@ -19,10 +19,13 @@ client.on("message", msg => {
 	switch(msg.content) {
 		case `${prefix}ping`:
 			msg.reply(` you know who the best Nina is.`);
+			break;
 		case `${prefix}coinToss`:
 			msg.channel.send(Math.random() * 1 ? "Heads" : "Tails");
+			break;
 		case `${prefix}commands`:
 			listCommands(msg);
+			break;
 	}
 });
 
