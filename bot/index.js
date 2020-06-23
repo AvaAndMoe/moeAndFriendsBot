@@ -10,9 +10,9 @@ client.on("message", msg => {
 	if (msg.content === `${prefix}ping`) {
 		msg.reply("Pong!");
 	} else if (msg.content === `${prefix}bestNina`) {
-		message.reply(` you know who the best Nina is.`);
+		msg.reply(` you know who the best Nina is.`);
 	} else if (msg.content === `${prefix}coinToss`) {
-		message.channel.send(Math.random() * 1 ? "Heads" : "Tails");
+		msg.channel.send(Math.random() * 1 ? "Heads" : "Tails");
 	}
 });
 
