@@ -17,7 +17,7 @@ client.on("ready", () => {
 
 client.on("message", msg => {
 	switch(msg.content) {
-		case `${prefix}ping`:
+		case `${prefix}bestNina`:
 			msg.reply(` you know who the best Nina is.`);
 			break;
 		case `${prefix}coinToss`:
