@@ -21,7 +21,7 @@ client.on("message", msg => {
 			msg.reply(` you know who the best Nina is.`);
 		case `${prefix}coinToss`:
 			msg.channel.send(Math.random() * 1 ? "Heads" : "Tails");
-		case msg.content === `${prefix}commands`:
+		case `${prefix}commands`:
 			listCommands(msg);
 	}
 });
