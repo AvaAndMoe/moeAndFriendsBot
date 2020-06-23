@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require("./config");
+const { token, prefix } = require("./config");
 console.log(config);
 
 client.on("ready", () => {
@@ -8,8 +8,12 @@ client.on("ready", () => {
 });
 
 client.on("message", msg => {
-	if (msg.content === "!ping") {
+	if (msg.content === `${prefix}ping`) {
 		msg.reply("Pong!");
+	} else if (msg.content === `${prefix}bestNina`) {
+		message.reply(` you know who the best Nina is.`);
+	} else if (msg.content === `${prefix}coinToss`) {
+		message.channel.send(Math.random() * 1 ? "Heads" : "Tails");
 	}
 });
 
