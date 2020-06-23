@@ -1,0 +1,5 @@
+[
+	{ "command": "commands", "description": "display a list of commands" },
+	{ "command": "coinToss", "description": "Flip a coin" },
+	{ "command": "bestNina", "description": "You know T7" }
+]
