@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { token, prefix } = require("./config");
+const twitchEmbed = require("./twitchEmbed");
 const commands = require("./commands.json");
 
 function listCommands(msg) {
@@ -10,6 +11,15 @@ function listCommands(msg) {
 	});
 	msg.channel.send(output);
 }
+
+const validRole = (guild, roles) => {
+	if (guild === "homies") {
+		if (roles.includes("725073064471035976") || roles.includes("104756584533479424")) {
+			return true;
+		}
+	}
+	return false;
+};
 
 function eightBall(msg) {
 	let responses = [
@@ -44,7 +54,8 @@ client.on("ready", () => {
 });
 
 client.on("message", msg => {
-	let command = (msg.content.match(/^![\w\d]*\b/) || [])[0];
+	const command = (msg.content.match(/^![\w\d]*\b/) || [])[0];
+	const subCommand = (msg.content.split(/^![\w\d]*\b/) || [])[1];
 	switch (command) {
 		case `${prefix}bestNina`:
 			msg.reply(` you know who the best Nina is.`);
@@ -59,10 +70,19 @@ client.on("message", msg => {
 			eightBall(msg);
 			break;
 		case `${prefix}clean`:
-			console.log(msg.member);
-			if (msg.member._roles.includes("725073064471035976")) msg.channel.bulkDelete(10);
-			else if (msg.member._roles.includes("104756584533479424")) msg.channel.bulkDelete(10);
+			let value = 10;
+			if (parseInt(subCommand.trim()) > 0) {
+				value = parseInt(subCommand.trim());
+			}
+			if (validRole("homies", msg.member._roles)) {
+				msg.channel.bulkDelete(value);
+			}
 			break;
+		case `${prefix}live`: {
+			if (validRole("homies", msg.member._roles)) {
+				msg.channel.send(twitchEmbed);
+			}
+		}
 	}
 });
 
