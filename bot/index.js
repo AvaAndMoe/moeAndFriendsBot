@@ -59,7 +59,8 @@ client.on("message", msg => {
 			eightBall(msg);
 			break;
 		case `${prefix}clean`:
-			msg.channel.bulkDelete(30);
+			console.log(msg.member.roles);
+			if (msg.member.roles.has(725073064471035976)) msg.channel.bulkDelete(4);
 			break;
 	}
 });
