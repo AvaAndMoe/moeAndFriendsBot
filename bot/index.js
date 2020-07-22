@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const { token, prefix } = require("./config");
+const { token, prefix, roles } = require("./config");
 const twitchEmbed = require("./twitchEmbed");
 const commands = require("./commands.json");
 
@@ -14,7 +14,7 @@ function listCommands(msg) {
 
 const validRole = (guild, roles) => {
 	if (guild === "homies") {
-		if (roles.includes("725073064471035976") || roles.includes("104756584533479424")) {
+		if (roles.includes(`${roles['homies']}`) || roles.includes("104756584533479424")) {
 			return true;
 		}
 	}
@@ -84,7 +84,7 @@ client.on("message", msg => {
 			}
 			break;
 		case `${prefix}squad`:
-			msg.channel.send(`<@&725150520670552095> test`);
+			msg.channel.send(`<@&${roles['valorant']}>`);
 			// msg.channel.send(new Discord.MessageEmbed()
 			// 	.set("Let's get it!")
 			// 	.setImage("https://i.imgur.com/UCUjEWC.jpg"));
