@@ -84,7 +84,7 @@ client.on("message", msg => {
 			}
 			break;
 		case `${prefix}squad`:
-			msg.channel.send("<@725150520670552095> test");
+			msg.channel.send(`<@&${725150520670552095}> test`);
 			// msg.channel.send(new Discord.MessageEmbed()
 			// 	.set("Let's get it!")
 			// 	.setImage("https://i.imgur.com/UCUjEWC.jpg"));
