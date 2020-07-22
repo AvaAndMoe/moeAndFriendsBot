@@ -1,27 +1,28 @@
 {
-  "name": "moeandfriendsbot",
-  "version": "0.0.1",
-  "description": "Discord bot for Moe and Friends server",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Avacaerro/moeAndFriendsBot.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Avacaerro/moeAndFriendsBot/issues"
-  },
-  "homepage": "https://github.com/Avacaerro/moeAndFriendsBot#readme",
-  "dependencies": {
-    "discord.js": "^12.2.0",
-    "dotenv": "^8.2.0"
-  }
+	"name": "moeandfriendsbot",
+	"version": "1.0.0",
+	"description": "Discord bot for Moe and Friends server",
+	"main": "index.js",
+	"directories": {
+		"lib": "lib",
+		"test": "test"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node ./bot/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Avacaerro/moeAndFriendsBot.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Avacaerro/moeAndFriendsBot/issues"
+	},
+	"homepage": "https://github.com/Avacaerro/moeAndFriendsBot#readme",
+	"dependencies": {
+		"discord.js": "^12.2.0",
+		"dotenv": "^8.2.0"
+	}
 }
