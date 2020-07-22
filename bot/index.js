@@ -78,11 +78,14 @@ client.on("message", msg => {
 				msg.channel.bulkDelete(value);
 			}
 			break;
-		case `${prefix}live`: {
+		case `${prefix}live`: 
 			if (validRole("homies", msg.member._roles)) {
 				msg.channel.send(twitchEmbed);
 			}
-		}
+			break;
+		case `${prefix}squad`:
+			msg.channel.send(`@valorant test\nhttps://i.imgur.com/UCUjEWC.jpg`);
+			break;
 	}
 });
 
