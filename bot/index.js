@@ -118,12 +118,11 @@ client.on("message", msg => {
 				msg.channel.bulkDelete(value);
 			}
 			break;
-		case `${prefix}live`: {
+		case `${prefix}live`:
 			if (validRole("Homies", msg.member)) {
 				msg.channel.send(twitchEmbed);
 			}
 			break;
-		}
 		case `${prefix}squad`:
 			msg.channel.send(`<@&725150520670552095>`);
 			msg.channel.send(
