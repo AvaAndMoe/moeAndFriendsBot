@@ -5,7 +5,7 @@ const twitchEmbed = new Discord.MessageEmbed()
 	.setTitle("Going Live on Twitch")
 	.setURL("https://twitch.tv/moebizz")
 	.setDescription("Moe is Live come hang out :D")
-	.setThumbnail("https://i.imgur.com/q51MISE.gifv")
+	.setThumbnail("https://i.imgur.com/JDqBWjg.jpg")
 	.addFields({ name: "You know how it is", value: "Streaming whatever" })
 	.setTimestamp();
 
