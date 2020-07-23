@@ -14,7 +14,7 @@ function listCommands(msg) {
 
 const validRole = (guild, roles) => {
 	if (guild === "homies") {
-		if (roles.includes(`${roles['homies']}`) || roles.includes("104756584533479424")) {
+		if (roles.includes("725073064471035976") || roles.includes("104756584533479424")) {
 			return true;
 		}
 	}
@@ -84,10 +84,10 @@ client.on("message", msg => {
 			}
 			break;
 		case `${prefix}squad`:
-			msg.channel.send("<@&" + roles['valorant'] + ">");
-			// msg.channel.send(new Discord.MessageEmbed()
-			// 	.set("Let's get it!")
-			// 	.setImage("https://i.imgur.com/UCUjEWC.jpg"));
+			msg.channel.send(`<@&725150520670552095>`);
+			msg.channel.send(new Discord.MessageEmbed()
+				.setTitle("Let's get it!")
+				.setImage("https://i.imgur.com/UCUjEWC.jpg"));
 			break;
 	}
 });
