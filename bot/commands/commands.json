@@ -11,5 +11,6 @@
 		"command": "subscribe",
 		"description": "type unsubscribe and then the group you would like to Unsubscribe from. \n\tValid Subscriptions: Valorant"
 	},
-	{ "command": "squad", "description": "Mentions the Valorant group" }
+	{ "command": "squad", "description": "Mentions the Valorant group" },
+	{ "command": "kick", "description": "type kick @user <reason>" }
 ]

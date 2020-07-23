@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { token, prefix, roles } = require("./config");
 const twitchEmbed = require("./twitchEmbed");
-const { unSubscribe, subscribe, listCommands, eightBall } = require("./commands");
+const { unSubscribe, subscribe, listCommands, eightBall, kick } = require("./commands");
 
 const validRole = (clan, member) => {
 	return member.roles.cache.some(role => role.name === clan);
@@ -56,6 +56,12 @@ client.on("message", msg => {
 					.setImage("https://i.imgur.com/UCUjEWC.jpg"),
 			);
 			break;
+		case `${prefix}kick`:
+			if (validRole("Homies", msg.member)) {
+				let user = msg.mentions.users.first();
+				let reason = msg.split(' ')[2];
+				kick(user, reason);
+			}
 	}
 });
 
