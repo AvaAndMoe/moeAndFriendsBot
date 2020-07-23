@@ -5,11 +5,11 @@
 	{ "command": "8ball", "description": "type 8ball and then your question" },
 	{
 		"command": "subscribe",
-		"description": "type subscribe and then the group you would like to Subscribe to.\nValid Subscriptions: Valorant"
+		"description": "type subscribe and then the group you would like to Subscribe to."
 	},
 	{
 		"command": "subscribe",
-		"description": "type unsubscribe and then the group you would like to Unsubscribe from.\nValid Subscriptions: Valorant"
+		"description": "type unsubscribe and then the group you would like to Unsubscribe from. \n\tValid Subscriptions: Valorant"
 	},
 	{ "command": "squad", "description": "Mentions the Valorant group" }
 ]
