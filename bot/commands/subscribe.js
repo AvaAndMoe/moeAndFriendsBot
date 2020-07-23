@@ -1,3 +1,7 @@
+const validRole = (clan, member) => {
+	return member.roles.cache.some(role => role.name === clan);
+};
+
 const subscribe = (msg, subCommand) => {
 	switch (subCommand.toLowerCase()) {
 		case "valorant": {
