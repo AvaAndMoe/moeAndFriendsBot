@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { token, prefix, roles } = require("./config");
 const twitchEmbed = require("./twitchEmbed");
-const { unSubscribe, subscribe, listCommands, eightBall, kick } = require("./commands");
+const { unSubscribe, subscribe, listCommands, eightBall, kick, ban } = require("./commands");
 
 const validRole = (clans, member) => {
 	let filtered = clans.filter(clan => member.roles.cache.some(role => role.name === clan));
@@ -49,6 +49,12 @@ client.on("message", msg => {
 				msg.channel.send(twitchEmbed);
 			}
 			break;
+		case `${prefix}ban`:
+			if (validRole(["Homies","Admin"], msg.member)) {
+				ban(msg);
+			}
+			break;
+
 		case `${prefix}squad`:
 			msg.channel.send(`<@&725150520670552095>`);
 			msg.channel.send(
