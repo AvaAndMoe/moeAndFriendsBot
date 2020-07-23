@@ -11,5 +11,14 @@
 		"command": "subscribe",
 		"description": "type unsubscribe and then the group you would like to Unsubscribe from. \n\tValid Subscriptions: Valorant"
 	},
-	{ "command": "squad", "description": "Mentions the Valorant group" }
+	{ "command": "squad", "description": "Mentions the Valorant group" },
+	{ "command": "kick", "description": "type kick @user <reason>" }
+	{
+		"command": "ban",
+		"description": "Ban a user. Enter in as !ban <@user> <days> <reason>. Available only to Homies and above"
+	},
+	{
+		"command": "clean",
+		"description": "Clean messages out of a channel. Enter in as !clean <amount>. Limited by two week freshness. Available only to Homies and above"
+	}
 ]
