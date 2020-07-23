@@ -58,9 +58,7 @@ client.on("message", msg => {
 			break;
 		case `${prefix}kick`:
 			if (validRole("Homies", msg.member)) {
-				let user = msg.mentions.users.first();
-				let reason = msg.split(' ')[2];
-				kick(user, reason);
+				kick(msg);
 			}
 	}
 });
