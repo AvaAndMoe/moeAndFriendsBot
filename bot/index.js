@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const { token, prefix } = require("./config");
+const { token, prefix, roles } = require("./config");
 const twitchEmbed = require("./twitchEmbed");
 const commands = require("./commands.json");
 
@@ -122,7 +122,13 @@ client.on("message", msg => {
 			if (validRole("Homies", msg.member)) {
 				msg.channel.send(twitchEmbed);
 			}
-		}
+			break;
+		case `${prefix}squad`:
+			msg.channel.send(`<@&725150520670552095>`);
+			msg.channel.send(new Discord.MessageEmbed()
+				.setTitle("Let's get it!")
+				.setImage("https://i.imgur.com/UCUjEWC.jpg"));
+			break;
 	}
 });
 
