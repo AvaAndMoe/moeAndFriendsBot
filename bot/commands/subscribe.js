@@ -4,7 +4,7 @@ const validRole = (clan, member) => {
 
 const subscribe = (msg, subCommand) => {
 	switch (subCommand.toLowerCase()) {
-		case "valorant": {
+		case "valorant":
 			if (validRole(["Valorant"], msg.member)) {
 				msg.channel.send(`${msg.author} is already subscribed to Valorant`);
 			} else {
