@@ -12,13 +12,47 @@ function listCommands(msg) {
 	msg.channel.send(output);
 }
 
-const validRole = (guild, roles) => {
-	if (guild === "homies") {
-		if (roles.includes("725073064471035976") || roles.includes("104756584533479424")) {
-			return true;
+const validRole = (clan, member) => {
+	return member.roles.cache.some(role => role.name === clan);
+};
+
+const subscribe = (msg, subCommand) => {
+	switch (subCommand.toLowerCase()) {
+		case "valorant": {
+			if (validRole("Valorant", msg.member)) {
+				msg.channel.send(`${msg.author} is already subscribed to Valorant`);
+			} else {
+				const role = msg.guild.roles.cache.find(role => role.name === "Valorant");
+				msg.member.roles.add(role);
+				msg.channel.send(`${msg.author} is now subscribed to Valorant`);
+			}
+			break;
+		}
+		default: {
+			msg.channel.send(`${msg.author} must select a valid role`);
+			break;
 		}
 	}
-	return false;
+};
+
+const unSubscribe = (msg, subCommand) => {
+	switch (subCommand.toLowerCase()) {
+		case "valorant": {
+			if (validRole("Valorant", msg.member)) {
+				const member = msg.member;
+				const role = msg.guild.roles.cache.find(role => role.name === "Valorant");
+				msg.member.roles.remove(role);
+				msg.channel.send(`${msg.author} is now unsubscribed to Valorant`);
+			} else {
+				msg.channel.send(`${msg.author} is not subscribed to Valorant`);
+			}
+			break;
+		}
+		default: {
+			msg.channel.send(`${msg.author} must select a valid role`);
+			break;
+		}
+	}
 };
 
 function eightBall(msg) {
@@ -69,17 +103,23 @@ client.on("message", msg => {
 		case `${prefix}8ball`:
 			eightBall(msg);
 			break;
+		case `${prefix}subscribe`:
+			subscribe(msg, subCommand.trim());
+			break;
+		case `${prefix}unsubscribe`:
+			unSubscribe(msg, subCommand.trim());
+			break;
 		case `${prefix}clean`:
 			let value = 10;
 			if (parseInt(subCommand.trim()) > 0) {
 				value = parseInt(subCommand.trim());
 			}
-			if (validRole("homies", msg.member._roles)) {
+			if (validRole("Homies", msg.member)) {
 				msg.channel.bulkDelete(value);
 			}
 			break;
 		case `${prefix}live`: {
-			if (validRole("homies", msg.member._roles)) {
+			if (validRole("Homies", msg.member)) {
 				msg.channel.send(twitchEmbed);
 			}
 		}
