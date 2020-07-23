@@ -2,86 +2,12 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { token, prefix, roles } = require("./config");
 const twitchEmbed = require("./twitchEmbed");
-const commands = require("./commands.json");
+const { unSubscribe, subscribe, listCommands, eightBall, kick, ban } = require("./commands");
 
-function listCommands(msg) {
-	let output = "Commands |  Description \n";
-	commands.map(cmd => {
-		output = `${output}${cmd.command}: ${cmd.description}\n`;
-	});
-	msg.channel.send(output);
-}
-
-const validRole = (clan, member) => {
-	return member.roles.cache.some(role => role.name === clan);
+const validRole = (clans, member) => {
+	let filtered = clans.filter(clan => member.roles.cache.some(role => role.name === clan));
+	return filtered.length > 0;
 };
-
-const subscribe = (msg, subCommand) => {
-	switch (subCommand.toLowerCase()) {
-		case "valorant": {
-			if (validRole("Valorant", msg.member)) {
-				msg.channel.send(`${msg.author} is already subscribed to Valorant`);
-			} else {
-				const role = msg.guild.roles.cache.find(role => role.name === "Valorant");
-				msg.member.roles.add(role);
-				msg.channel.send(`${msg.author} is now subscribed to Valorant`);
-			}
-			break;
-		}
-		default: {
-			msg.channel.send(`${msg.author} must select a valid role`);
-			break;
-		}
-	}
-};
-
-const unSubscribe = (msg, subCommand) => {
-	switch (subCommand.toLowerCase()) {
-		case "valorant": {
-			if (validRole("Valorant", msg.member)) {
-				const member = msg.member;
-				const role = msg.guild.roles.cache.find(role => role.name === "Valorant");
-				msg.member.roles.remove(role);
-				msg.channel.send(`${msg.author} is now unsubscribed to Valorant`);
-			} else {
-				msg.channel.send(`${msg.author} is not subscribed to Valorant`);
-			}
-			break;
-		}
-		default: {
-			msg.channel.send(`${msg.author} must select a valid role`);
-			break;
-		}
-	}
-};
-
-function eightBall(msg) {
-	let responses = [
-		"It is certain.",
-		"It is decidedly so.",
-		"Without a doubt.",
-		"Yes - definitely.",
-		"You may rely on it.",
-		"As I see it, yes.",
-		"Most likely.",
-		"Outlook good.",
-		"Yes.",
-		"Signs point to yes.",
-		"Reply hazy, try again.",
-		"Ask again later.",
-		"Better not tell you now.",
-		"Cannot predict now.",
-		"Concentrate and ask again.",
-		"Don't count on it.",
-		"My reply is no.",
-		"My sources say no.",
-		"Outlook not so good.",
-		"Very doubtful.",
-	];
-
-	let answer = Math.floor(Math.random() * responses.length);
-	msg.channel.send(`Question: ${msg.content.slice(7)}\n8 ball says: ${responses[answer]}`);
-}
 
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`);
@@ -114,15 +40,21 @@ client.on("message", msg => {
 			if (parseInt(subCommand.trim()) > 0) {
 				value = parseInt(subCommand.trim());
 			}
-			if (validRole("Homies", msg.member)) {
+			if (validRole(["Homies", "Admin"], msg.member)) {
 				msg.channel.bulkDelete(value);
 			}
 			break;
 		case `${prefix}live`:
-			if (validRole("Homies", msg.member)) {
+			if (validRole(["Homies", "Admin"], msg.member)) {
 				msg.channel.send(twitchEmbed);
 			}
 			break;
+		case `${prefix}ban`:
+			if (validRole(["Homies","Admin"], msg.member)) {
+				ban(msg);
+			}
+			break;
+
 		case `${prefix}squad`:
 			msg.channel.send(`<@&725150520670552095>`);
 			msg.channel.send(
@@ -131,6 +63,10 @@ client.on("message", msg => {
 					.setImage("https://i.imgur.com/UCUjEWC.jpg"),
 			);
 			break;
+		case `${prefix}kick`:
+			if (validRole(["Homies", "Admin"], msg.member)) {
+				kick(msg);
+			}
 	}
 });
 
