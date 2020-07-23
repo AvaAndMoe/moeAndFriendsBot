@@ -1,7 +1,7 @@
 const subscribe = (msg, subCommand) => {
 	switch (subCommand.toLowerCase()) {
 		case "valorant": {
-			if (validRole("Valorant", msg.member)) {
+			if (validRole(["Valorant"], msg.member)) {
 				msg.channel.send(`${msg.author} is already subscribed to Valorant`);
 			} else {
 				const role = msg.guild.roles.cache.find(role => role.name === "Valorant");
@@ -20,7 +20,7 @@ const subscribe = (msg, subCommand) => {
 const unSubscribe = (msg, subCommand) => {
 	switch (subCommand.toLowerCase()) {
 		case "valorant": {
-			if (validRole("Valorant", msg.member)) {
+			if (validRole(["Valorant"], msg.member)) {
 				const member = msg.member;
 				const role = msg.guild.roles.cache.find(role => role.name === "Valorant");
 				msg.member.roles.remove(role);

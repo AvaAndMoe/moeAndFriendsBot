@@ -4,8 +4,9 @@ const { token, prefix, roles } = require("./config");
 const twitchEmbed = require("./twitchEmbed");
 const { unSubscribe, subscribe, listCommands, eightBall, kick } = require("./commands");
 
-const validRole = (clan, member) => {
-	return member.roles.cache.some(role => role.name === clan);
+const validRole = (clans, member) => {
+	let filtered = clans.filter(clan => member.roles.cache.some(role => role.name === clan));
+	return filtered.length > 0;
 };
 
 client.on("ready", () => {
@@ -39,12 +40,12 @@ client.on("message", msg => {
 			if (parseInt(subCommand.trim()) > 0) {
 				value = parseInt(subCommand.trim());
 			}
-			if (validRole("Homies", msg.member)) {
+			if (validRole(["Homies", "Admin"], msg.member)) {
 				msg.channel.bulkDelete(value);
 			}
 			break;
 		case `${prefix}live`:
-			if (validRole("Homies", msg.member)) {
+			if (validRole(["Homies", "Admin"], msg.member)) {
 				msg.channel.send(twitchEmbed);
 			}
 			break;
@@ -57,7 +58,7 @@ client.on("message", msg => {
 			);
 			break;
 		case `${prefix}kick`:
-			if (validRole("Homies", msg.member)) {
+			if (validRole(["Homies", "Admin"], msg.member)) {
 				kick(msg);
 			}
 	}
