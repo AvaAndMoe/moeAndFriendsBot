@@ -2,5 +2,6 @@
 	{ "command": "commands", "description": "display a list of commands" },
 	{ "command": "coinToss", "description": "Flip a coin" },
 	{ "command": "bestNina", "description": "You know T7" },
-	{ "command": "8ball", "description": "type 8ball and then your question" }
+	{ "command": "8ball", "description": "type 8ball and then your question" },
+	{ "command": "squad", "description": "Mentions the Valorant group" }
 ]
